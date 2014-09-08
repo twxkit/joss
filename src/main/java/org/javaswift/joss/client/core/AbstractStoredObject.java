@@ -147,6 +147,11 @@ public abstract class AbstractStoredObject extends AbstractObjectStoreEntity<Obj
         invalidate();
     }
 
+    @Override
+    public void autoExtract(Container targetContainer, File archive, String archiveFormat) {
+        commandFactory.createAutoExtractCommand(getAccount(), targetContainer, this, archive ,archiveFormat).call();
+    }
+
     public void uploadObjectAsSegments(UploadInstructions uploadInstructions) {
         ((AbstractContainer)getContainer()).uploadSegmentedObjects(getName(), uploadInstructions);
         // The manifest file is the handle which allows the ObjectStore to piece the segments together as one file
@@ -195,7 +200,7 @@ public abstract class AbstractStoredObject extends AbstractObjectStoreEntity<Obj
     }
 
     public void downloadObject(File targetFile, DownloadInstructions downloadInstructions) {
-        commandFactory.createDownloadObjectToFileCommand(getAccount(), getContainer(),this, downloadInstructions, targetFile).call();
+        commandFactory.createDownloadObjectToFileCommand(getAccount(), getContainer(), this, downloadInstructions, targetFile).call();
     }
 
     public void directlyUploadObject(UploadInstructions uploadInstructions) {

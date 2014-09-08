@@ -37,6 +37,8 @@ public interface StoredObjectCommandFactory {
     UploadObjectCommand createUploadObjectCommand(Account account, Container container,
                                                   StoredObject target, UploadInstructions uploadInstructions);
 
+    AutoExtractCommand createAutoExtractCommand(Account account, Container container, StoredObject target, File archive, String archiveFormat);
+
     String getTempUrlPrefix();
 
     Character getDelimiter();

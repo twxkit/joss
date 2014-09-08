@@ -106,6 +106,8 @@ public interface StoredObject extends ObjectStoreEntity, Comparable<DirectoryOrO
     */
     public void copyObject(Container targetContainer, StoredObject targetObject);
 
+    public void autoExtract(Container targetContainer, File archive, String archiveFormat);
+
     /**
     * Explicitly sets the content type of an object. This can be useful, for example when you have content-sniffers
     * in the application that need to advise the object store (which uses a simple file extension matching instead

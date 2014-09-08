@@ -64,6 +64,11 @@ public class StoredObjectCommandFactoryImpl implements StoredObjectCommandFactor
     }
 
     @Override
+    public AutoExtractCommand createAutoExtractCommand(Account account, Container container, StoredObject target, File archive, String archiveFormat) {
+        return new AutoExtractCommandImpl(account, getHttpClient(), getAccess(), target, archive, archiveFormat);
+    }
+
+    @Override
     public String getTempUrlPrefix() {
         return containerCommandFactory.getTempUrlPrefix();
     }
