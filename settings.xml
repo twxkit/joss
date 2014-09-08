@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/POM/4.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <mirrors>
+        <mirror>
+            <id>nexus</id>
+            <mirrorOf>central</mirrorOf>
+            <url>http://209.34.73.243/nexus/content/groups/public</url>
+        </mirror>
+    </mirrors>
+
+    <servers>
+        <server>
+            <!-- this id should match the id of the repo server in pom.xml -->
+            <id>releases</id>
+            <username>deployment</username>
+            <password>Th0u9htWorks!</password>
+        </server>
+    </servers>
+</settings>
