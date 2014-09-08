@@ -63,6 +63,11 @@ public class StoredObjectCommandFactoryMock implements StoredObjectCommandFactor
     }
 
     @Override
+    public AutoExtractCommand createAutoExtractCommand(Account account, Container container, StoredObject target, File archive, String archiveFormat) {
+        return null;
+    }
+
+    @Override
     public String getTempUrlPrefix() {
         return "";
     }
