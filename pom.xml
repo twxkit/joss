@@ -1,9 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.javaswift</groupId>
     <artifactId>joss</artifactId>
-    <version>9.9.1</version>
+    <version>9.9.2</version>
     <packaging>jar</packaging>
     <name>Java OpenStack Storage</name>
     <description>Java Client library for OpenStack Storage (Swift)</description>
@@ -164,7 +165,7 @@
                 <version>${maven.cobertura.version}</version>
                 <configuration>
                     <instrumentation/>
-                    <check />
+                    <check/>
                 </configuration>
             </plugin>
 
@@ -195,4 +196,24 @@
         </plugins>
     </reporting>
 
+    <profiles>
+        <profile>
+            <id>deployer</id>
+
+            <distributionManagement>
+                <repository>
+                    <id>releases</id>
+                    <name>Releases</name>
+                    <!--<url>http://10.173.38.14/nexus/content/repositories/releases</url>-->
+                    <url>http://209.34.73.243/nexus/content/repositories/releases</url>
+                </repository>
+                <snapshotRepository>
+                    <id>snapshots</id>
+                    <name>Snapshots</name>
+                    <!--<url>http://10.173.38.14/nexus/content/repositories/snapshots</url>-->
+                    <url>http://209.34.73.243/nexus/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
+    </profiles>
 </project>

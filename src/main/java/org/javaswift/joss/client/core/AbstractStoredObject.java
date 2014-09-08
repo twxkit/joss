@@ -149,7 +149,7 @@ public abstract class AbstractStoredObject extends AbstractObjectStoreEntity<Obj
 
     @Override
     public void autoExtract(Container targetContainer, File archive, String archiveFormat) {
-        commandFactory.createAutoExtractCommand(getAccount(), targetContainer, this, archive ,archiveFormat).call();
+        commandFactory.createAutoExtractCommand(getAccount(), this, archive ,archiveFormat).call();
     }
 
     public void uploadObjectAsSegments(UploadInstructions uploadInstructions) {
