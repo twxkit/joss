@@ -6,7 +6,7 @@
         <mirror>
             <id>nexus</id>
             <mirrorOf>central</mirrorOf>
-            <url>http://209.34.73.243/nexus/content/groups/public</url>
+            <url>http://nexus.xkit.co/nexus/content/groups/public</url>
         </mirror>
     </mirrors>
 
@@ -14,6 +14,11 @@
         <server>
             <!-- this id should match the id of the repo server in pom.xml -->
             <id>releases</id>
+            <username>deployment</username>
+            <password>Th0u9htWorks!</password>
+        </server>
+        <server>
+            <id>snapshots</id>
             <username>deployment</username>
             <password>Th0u9htWorks!</password>
         </server>
