@@ -1081,7 +1081,7 @@ application/x-msaccess				mdb
 application/x-msbinder				obd
 application/x-mscardfile			crd
 application/x-msclip				clp
-application/x-msdownload			exe dll com bat msi
+application/x-msdownload			exe dll bat msi
 application/x-msmediaview			mvb m13 m14
 application/x-msmetafile			wmf wmz emf emz
 application/x-msmoney				mny
