@@ -18,7 +18,7 @@ import static junit.framework.Assert.fail;
 import static org.javaswift.joss.command.shared.identity.access.ServiceCatalogBuilder.createServiceCatalog;
 
 public class AccessTest {
-    
+
     @Test
     public void testUnmarshalling() throws IOException {
         String jsonString = new ClasspathTemplateResource("/sample-access.json").loadTemplate();

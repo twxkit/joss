@@ -4,6 +4,7 @@ import org.javaswift.joss.command.mock.container.*;
 import org.javaswift.joss.command.shared.container.*;
 import org.javaswift.joss.command.shared.factory.ContainerCommandFactory;
 import org.javaswift.joss.command.shared.factory.StoredObjectCommandFactory;
+import org.javaswift.joss.command.shared.object.DeleteObjectsCommand;
 import org.javaswift.joss.headers.Header;
 import org.javaswift.joss.instructions.ListInstructions;
 import org.javaswift.joss.model.Account;
@@ -11,6 +12,7 @@ import org.javaswift.joss.model.Container;
 import org.javaswift.joss.swift.Swift;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ContainerCommandFactoryMock implements ContainerCommandFactory {
 
@@ -57,6 +59,11 @@ public class ContainerCommandFactoryMock implements ContainerCommandFactory {
     public ListDirectoryCommand createListDirectoryCommand(Account account, Container container,
                                                            ListInstructions listInstructions, Character delimiter) {
         return new ListDirectoryCommandMock(swift, account, container, listInstructions);
+    }
+
+    @Override
+    public DeleteObjectsCommand createDeleteObjectsCommand(Account account, Container container, List<String> objectNames) {
+        return null;
     }
 
     @Override

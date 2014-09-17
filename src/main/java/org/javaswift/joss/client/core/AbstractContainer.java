@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.List;
 
 public abstract class AbstractContainer extends AbstractObjectStoreEntity<ContainerInformation> implements Container {
 
@@ -38,7 +39,7 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
 
     public AbstractContainer(Account account, String name, boolean allowCaching) {
         super(allowCaching);
-        this.commandFactory = ((AbstractAccount)account).getFactory().getContainerCommandFactory();
+        this.commandFactory = ((AbstractAccount) account).getFactory().getContainerCommandFactory();
         this.name = name;
         this.account = account;
         this.info = new ContainerInformation();
@@ -80,6 +81,12 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
         return listDirectory(null);
     }
 
+    @Override
+    public int deleteObjects(List<String> objectNames) {
+        Object deletedCount = commandFactory.createDeleteObjectsCommand(getAccount(), this, objectNames).call();
+        return ((Integer) deletedCount);
+    }
+
     public void metadataSetFromHeaders() {
         this.staleHeaders = false;
     }
@@ -111,11 +118,11 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
         String path = commandFactory.getTempUrlPrefix() + getPath();
         long expires = getAccount().getActualServerTimeInSeconds(seconds);
         String plainText =
-                path+"\n"+
-                redirect+"\n"+
-                maxFileSize+"\n"+
-                maxFileCount+"\n"+
-                expires;
+                path + "\n" +
+                        redirect + "\n" +
+                        maxFileSize + "\n" +
+                        maxFileCount + "\n" +
+                        expires;
 
         FormPost formPost = new FormPost();
         formPost.expires = expires;
@@ -135,11 +142,12 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
         checkForInfo();
         return info.isPublicContainer();
     }
-    
+
     public String getContainerReadPermission() {
         checkForInfo();
         return info.getReadPermissions();
     }
+
     public String getcontainerWritePermission() {
         checkForInfo();
         return info.getWritePermissions();
@@ -172,20 +180,20 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
     }
 
     public void uploadSegmentedObjects(String name, UploadInstructions uploadInstructions) {
-        String path = getName()+"/"+name;
+        String path = getName() + "/" + name;
         try {
-            LOG.info("JOSS / Setting up a segmentation plan for "+path);
+            LOG.info("JOSS / Setting up a segmentation plan for " + path);
             SegmentationPlan plan = uploadInstructions.getSegmentationPlan();
             InputStream segmentStream = plan.getNextSegment();
             while (segmentStream != null) {
-                LOG.info("JOSS / Uploading segment "+plan.getSegmentNumber());
+                LOG.info("JOSS / Uploading segment " + plan.getSegmentNumber());
                 StoredObject segment = getObjectSegment(name, plan.getSegmentNumber().intValue());
                 segment.uploadObject(segmentStream);
                 segmentStream.close();
                 segmentStream = plan.getNextSegment();
             }
         } catch (IOException err) {
-            LOG.error("JOSS / Failed to set up a segmentation plan for "+path+": "+err.getMessage());
+            LOG.error("JOSS / Failed to set up a segmentation plan for " + path + ": " + err.getMessage());
             throw new CommandException("Unable to upload segments", err);
         }
     }
@@ -210,7 +218,7 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
         commandFactory.createContainerRightsCommand(getAccount(), this, publicContainer).call();
         this.info.setPublicContainer(publicContainer);
     }
-    
+
     public void setContainerRights(String writePermissions, String readPermissions) {
         commandFactory.createContainerRightsCommand(getAccount(), this, writePermissions, readPermissions).call();
         this.info.setWritePermissions(writePermissions);
@@ -250,5 +258,5 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
     public Collection<Header> getCustomHeaders() {
         return customHeaders;
     }
-    
+
 }

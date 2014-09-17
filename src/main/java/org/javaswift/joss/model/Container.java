@@ -1,8 +1,9 @@
 package org.javaswift.joss.model;
 
-import java.util.Collection;
-
 import org.javaswift.joss.headers.Header;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * A Container is the entity that holds StoredObjects. This handle allows you to access those objects and set/get
@@ -120,6 +121,8 @@ public interface Container extends ObjectStoreEntity, Comparable<Container>, Lis
     * @return collection of directories and objects within the root
     */
     public Collection<DirectoryOrObject> listDirectory();
+
+    public int deleteObjects(List<String> objectNames);
 
     public boolean isPublic();
 
