@@ -62,6 +62,11 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
     }
 
     @Override
+    public Collection<StoredObject> list(String prefix) {
+        return new ContainerPaginationMap(this, prefix, MAX_PAGE_SIZE).listAllItems();
+    }
+
+    @Override
     public Collection<DirectoryOrObject> listDirectory(String prefix, Character delimiter, String marker, int pageSize) {
         ListInstructions listInstructions = new ListInstructions()
                 .setPrefix(prefix)

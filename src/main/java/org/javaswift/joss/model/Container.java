@@ -47,6 +47,15 @@ public interface Container extends ObjectStoreEntity, Comparable<Container>, Lis
     public boolean exists();
 
     /**
+     * Lists all the objects in the container with prefix provided, it uses slash (/) as a delimiter in
+     * the name of the object to apply prefix.
+     *
+     * @param prefix the part of the object name to be looked up for
+     * @return the list of objects matching the name with given prefix
+     */
+    public Collection<StoredObject> list(String prefix);
+
+    /**
     * Returns a handle for an object. Note that this method DOES NOT create an object in the Object Store
     * @param name name of the object to create a handle for
     * @return the object handle
