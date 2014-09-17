@@ -3,9 +3,11 @@ package org.javaswift.joss.command.impl.factory;
 import org.apache.http.client.HttpClient;
 import org.javaswift.joss.client.factory.TempUrlHashPrefixSource;
 import org.javaswift.joss.command.impl.container.*;
+import org.javaswift.joss.command.impl.object.DeleteObjectsCommandImpl;
 import org.javaswift.joss.command.shared.container.*;
 import org.javaswift.joss.command.shared.factory.ContainerCommandFactory;
 import org.javaswift.joss.command.shared.factory.StoredObjectCommandFactory;
+import org.javaswift.joss.command.shared.object.DeleteObjectsCommand;
 import org.javaswift.joss.headers.Header;
 import org.javaswift.joss.instructions.ListInstructions;
 import org.javaswift.joss.model.Access;
@@ -13,13 +15,14 @@ import org.javaswift.joss.model.Account;
 import org.javaswift.joss.model.Container;
 
 import java.util.Collection;
+import java.util.List;
 
 public class ContainerCommandFactoryImpl implements ContainerCommandFactory {
 
     private final StoredObjectCommandFactory storedObjectCommandFactory;
 
     private AccountCommandFactoryImpl accountCommandFactory;
-    
+
     public ContainerCommandFactoryImpl(AccountCommandFactoryImpl accountCommandFactory) {
         this.accountCommandFactory = accountCommandFactory;
         this.storedObjectCommandFactory = new StoredObjectCommandFactoryImpl(this);
@@ -39,7 +42,7 @@ public class ContainerCommandFactoryImpl implements ContainerCommandFactory {
     public ContainerRightsCommand createContainerRightsCommand(Account account, Container container, boolean publicContainer) {
         return new ContainerRightsCommandImpl(account, getHttpClient(), getAccess(), container, publicContainer);
     }
-    
+
     @Override
     public ContainerRightsCommand createContainerRightsCommand(Account account, Container container, String writePermissions, String readPermissions) {
         return new ContainerRightsCommandImpl(account, getHttpClient(), getAccess(), container, writePermissions, readPermissions);
@@ -65,6 +68,12 @@ public class ContainerCommandFactoryImpl implements ContainerCommandFactory {
                                                            ListInstructions listInstructions, Character delimiter) {
         return new ListDirectoryCommandImpl(account, getHttpClient(), getAccess(), container, listInstructions, delimiter);
     }
+
+    @Override
+    public DeleteObjectsCommand createDeleteObjectsCommand(Account account, Container container, List<String> objectNames) {
+        return new DeleteObjectsCommandImpl(account, getHttpClient(), container, getAccess(), objectNames);
+    }
+
 
     public HttpClient getHttpClient() {
         return accountCommandFactory.getHttpClient();
