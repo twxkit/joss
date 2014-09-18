@@ -158,6 +158,14 @@ Things JOSS can do for you:
 * auto-reconnecting your Swift session
 * documentation and tutorials to help you get started
 
+Changes in katta/joss fork
+---------------------------
+* Support for auto extract when uploading a file
+* Support for bulk delete objects in a contianer
+** Given a prefix
+** Given a list of object names
+* Support for listing objects in acontainer with a given prefix
+
 License
 -------
    Licensed under the Apache License, Version 2.0 (the "License");
