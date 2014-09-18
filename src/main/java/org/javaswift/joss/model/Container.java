@@ -133,6 +133,8 @@ public interface Container extends ObjectStoreEntity, Comparable<Container>, Lis
 
     public int deleteObjects(List<String> objectNames);
 
+    public int deleteObjects(String prefix);
+
     public boolean isPublic();
 
     public void setCount(int count);
