@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -90,6 +91,15 @@ public abstract class AbstractContainer extends AbstractObjectStoreEntity<Contai
     public int deleteObjects(List<String> objectNames) {
         Object deletedCount = commandFactory.createDeleteObjectsCommand(getAccount(), this, objectNames).call();
         return ((Integer) deletedCount);
+    }
+
+    @Override
+    public int deleteObjects(String prefix) {
+        List<String> objectNames = new ArrayList<String>();
+        for (StoredObject object : list(prefix)) {
+            objectNames.add(object.getName());
+        }
+        return deleteObjects(objectNames);
     }
 
     public void metadataSetFromHeaders() {
