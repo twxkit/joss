@@ -162,8 +162,8 @@ Changes in katta/joss fork
 ---------------------------
 * Support for auto extract when uploading a file
 * Support for bulk delete objects in a contianer
-** Given a prefix
-** Given a list of object names
+  - Given a prefix
+  - Given a list of object names
 * Support for listing objects in acontainer with a given prefix
 
 License
