@@ -15,12 +15,12 @@
             <!-- this id should match the id of the repo server in pom.xml -->
             <id>releases</id>
             <username>deployment</username>
-            <password>Th0u9htWorks!</password>
+            <password>xxxxxxx</password>
         </server>
         <server>
             <id>snapshots</id>
             <username>deployment</username>
-            <password>Th0u9htWorks!</password>
+            <password>xxxxxxx</password>
         </server>
     </servers>
 </settings>
