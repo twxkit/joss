@@ -1,5 +1,6 @@
 Java OpenStack Storage (JOSS) [![Build Status](https://buildhive.cloudbees.com/job/javaswift/job/joss/badge/icon)](https://buildhive.cloudbees.com/job/javaswift/job/joss/)
 =============================
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/twxkit/joss?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 JOSS is a Java client for the [OpenStack Storage component](http://docs.openstack.org/essex/openstack-object-storage/admin/content/ch_introduction-to-openstack-object-storage.html) REST interface. In order to use it you must have an account with an OpenStack Storage provider, such as the [CloudVPS Object Store](https://www.cloudvps.nl/blog/cloudvps-object-store-beta-test-join-and-get-free-storage/).
 
 In order to use JOSS in your project, simply add the following dependency:
